@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tamiflu.mapper.QuestionMapper">
+<!--    提问的resultMap-->
+    <resultMap id="questionMap" type="Question">
+        <id column="qid" property="qid"/>
+        <result column="lesson_id" property="lessonId"/>
+        <result column="title" property="title"/>
+        <result column="content" property="content"/>
+        <result column="publish_date" property="publishDate"/>
+        <result column="username" property="username"/>
+        <result column="nickname" property="nickname"/>
+        <result column="tea_id" property="teaId"/>
+        <result column="is_answered" property="isAnswered"/>
+        <association property="teacher" javaType="Teacher">
+            <id column="tea_id" property="teaId"/>
+            <result column="name" property="name"/>
+        </association>
+        <association property="lesson" javaType="Lesson">
+            <id column="lesson_id" property="lessonId"/>
+            <result column="lesson_name" property="lessonName"/>
+            <result column="school_id" property="schoolId"/>
+        </association>
+        <association property="answer" javaType="Answer">
+            <id column="aid" property="aid"/>
+            <result column="qid" property="qid"/>
+            <result column="lesson_id" property="lessonId"/>
+            <result column="answer_date" property="answerDate"/>
+            <result column="tea_id" property="teaId"/>
+            <result column="answer_content" property="answerContent"/>
+            <result column="is_read" property="isRead"/>
+        </association>
+    </resultMap>
+<!--    分页查找提问-->
+    <select id="findQuestionsByPage" resultMap="questionMap">
+        select *
+         from question
+        inner join teacher
+        on question.tea_id=teacher.tea_id
+        inner join lesson
+        on lesson.lesson_id=question.lesson_id
+        left join answer
+        on question.qid=answer.qid
+        <where>
+            <if test="schoolId != null and schoolId != ''">
+                lesson.school_id=#{schoolId}
+            </if>
+            <if test="teaId != null and teaId != ''">
+                and teacher.tea_id=#{teaId}
+            </if>
+            <if test="lessonId != null and lessonId !=''">
+                and question.lesson_id=#{lessonId}
+            </if>
+        </where>
+    </select>
+<!--    更新提问-->
+    <update id="updateQuestion" parameterType="Question">
+        update question set title=#{title},content=#{content},publish_date=NOW(),tea_id=#{teaId}
+        where qid=#{qid}
+    </update>
+<!--    删除提问-->
+    <delete id="deleteQuestionById" parameterType="String">
+        delete from question
+        where qid=#{qid}
+    </delete>
+<!--    发布提问-->
+    <insert id="insertQuestion" parameterType="Question">
+        insert into question (lesson_id,title,content,username,nickname,tea_id)
+        values (#{lessonId},#{title},#{content},#{username},#{nickname},#{teaId})
+    </insert>
+    <!-- 修改已回答字段-->
+    <update id="updateIsAnswered">
+        update question set is_answered=#{isAnswered}
+        where qid=#{qid}
+    </update>
+</mapper>

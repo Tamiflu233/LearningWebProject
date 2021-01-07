@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tamiflu.mapper.AccountMapper">
+    <!--    配置结果集，用来连接查询账号对应的教师信息 -->
+    <resultMap id="TeaAccountMap" type="Account">
+        <id property="uid" column="uid"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="nickname" column="nickname"/>
+        <result property="userType" column="user_type"/>
+        <association property="teacher" javaType="Teacher">
+            <id property="teaId" column="tea_id"/>
+            <result property="name" column="name"></result>
+        </association>
+    </resultMap>
+
+<!--    添加新账号-->
+    <insert id="insertAccount" parameterType="Account" useGeneratedKeys="true" keyProperty="uid">
+        insert into account (username,password,nickname,user_type) values (#{username},#{password},#{nickname},#{userType})
+    </insert>
+<!--获取账号信息与对应的教师信息-->
+    <select id="selectAllTeaAccounts" parameterType="Account" resultMap="TeaAccountMap">
+        select * from account
+        left join teacher
+        on account.uid = teacher.uid
+        <where>
+            account.user_type='teacher'
+            <if test="account != null">
+                <if test="account.username != null">
+                    and account.username like '%${account.username}%'
+                </if>
+                <if test="account.nickname != null">
+                    and account.nickname like '%${account.nickname}%'
+                </if>
+                <if test="account.teacher != null">
+                    <if test="account.teacher.teaId != null and account.teacher.teaId != ''">
+                        and teacher.tea_id like '%${account.teacher.teaId}%'
+                    </if>
+                </if>
+            </if>
+        </where>
+    </select>
+<!--    获取与该账号具有相同用户名或教师号一致的账号-->
+    <select id="selectSameTeaAccount" parameterType="Account" resultMap="TeaAccountMap">
+        select * from account
+        left join teacher
+        on account.uid = teacher.uid
+        <where>
+            <if test="account != null">
+                <if test="account.username != null">
+                    account.username=#{account.username}
+                </if>
+                <if test="account.teacher!=null">
+                    <if test="account.teacher.teaId!=null  and account.teacher.teaId!=''">
+                        or teacher.tea_id=#{account.teacher.teaId}
+                    </if>
+                </if>
+            </if>
+        </where>
+    </select>
+<!--    删除账号-->
+    <delete id="deleteAccount" parameterType="String">
+        delete from account
+        where uid=#{uid}
+    </delete>
+<!--    更新账号信息-->
+    <update id="updateAccount" parameterType="Account">
+        update account set username=#{username},password=#{password},nickname=#{nickname}
+        where uid=#{uid}
+    </update>
+<!--    查看该用户名的账号-->
+    <select id="selectAccountByUsername" resultType="Account" parameterType="String">
+        select * from account
+        where username=#{username}
+    </select>
+</mapper>

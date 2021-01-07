@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tamiflu.mapper.TeacherMapper">
+
+<!--        添加老师信息(除了uid)-->
+    <insert  id="insertTeaInfo" parameterType="Teacher">
+        insert into teacher (tea_id,sex,name,profession,info) values (#{teaId},#{sex},#{name},#{profession},#{info})
+    </insert>
+<!--根据教师号更新老师的uid-->
+    <update id="updateTeaUid">
+        update teacher set uid=#{uid} where tea_id=#{teaId}
+    </update>
+<!--    查询老师信息(动态条件)-->
+    <select id="findTeachers" parameterType="Teacher" resultType="Teacher">
+        select tea_id,sex,name,profession,info,uid from teacher
+        <where>
+            <if test="teaId != null">
+                tea_id like '%${teaId}%'
+            </if>
+
+            <if test="sex != null">
+                and sex like '%${sex}%'
+            </if>
+            <if test="name != null">
+                and name like '%${name}%'
+            </if>
+            <if test="profession != null">
+                and profession like '%${profession}%'
+            </if>
+
+        </where>
+    </select>
+
+<!--    根据教师号删除教师-->
+    <delete id="deleteTeacherById" parameterType="String">
+        delete from teacher where tea_id=#{teaId}
+    </delete>
+<!--    更新教师信息-->
+    <update id="updateTeaInfo" parameterType="Teacher">
+        update teacher set sex=#{sex},name=#{name},profession=#{profession},info=#{info}
+        where tea_id=#{teaId}
+    </update>
+<!--    查询所有老师-->
+    <select id="findAllTeachers" resultType="Teacher">
+        select * from teacher
+    </select>
+<!--    查询教某门课的老师-->
+    <select id="findTeachersByLesson" parameterType="String" resultType="Teacher">
+        select * from teacher
+        inner join teaches
+        on teaches.tea_id=teacher.tea_id
+        where teaches.lesson_id=#{lessonId}
+    </select>
+<!--    根据用户名返回教室信息-->
+    <select id="findTeacherByUsername" parameterType="String" resultType="Teacher">
+        select * from teacher
+        inner join account
+        on account.uid=teacher.uid
+        where account.username=#{username}
+    </select>
+</mapper>

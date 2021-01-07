@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tamiflu.mapper.AnswerMapper">
+<!--    回答问题-->
+    <insert id="addAnswer" parameterType="Answer">
+        insert into answer (qid,lesson_id,tea_id,answer_content)
+        values (#{qid},#{lessonId},#{teaId},#{answerContent})
+    </insert>
+<!--    更新回答-->
+    <update id="updateAnswer" parameterType="Answer">
+        update answer set answer_date=now(),answer_content=#{answerContent}
+        where aid=#{aid}
+    </update>
+<!--    删除回答-->
+    <delete id="deleteAnswer" parameterType="String">
+        delete from answer where aid=#{aid}
+    </delete>
+<!--    按qid找回答-->
+    <select id="findAnswerByQid" parameterType="String" resultType="Answer">
+        select * from answer
+        where qid=#{qid}
+    </select>
+</mapper>

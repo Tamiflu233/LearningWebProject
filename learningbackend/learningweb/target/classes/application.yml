@@ -1,0 +1,46 @@
+# 应用名称
+spring:
+  application:
+    name: learningweb
+  # 数据库驱动：
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/learn?serverTimezone=UTC
+    username: root
+    password: weng6622
+    type: com.alibaba.druid.pool.DruidDataSource
+
+    druid:
+      test-on-borrow: true
+      test-while-idle: true
+
+      initial-size: 5
+      min-idle: 5
+      maxActive: 20
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+  resources:
+    static-locations: classpath:/static/, classpath:/META-INF/resources/, classpath:/resources/, classpath:/public/
+  mvc:
+    static-path-pattern: /**
+
+#应用服务 WEB 访问端口
+server:
+  port: 8989
+  servlet:
+    context-path: /
+#mybatis
+mybatis:
+  mapper-locations: classpath:com.tamiflu.mapper/*.xml
+  type-aliases-package: com.tamiflu.entity
+  configuration:
+    map-underscore-to-camel-case: true
+#配置分页插件
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  page-size-zero: false
+  params: count=countsql
+

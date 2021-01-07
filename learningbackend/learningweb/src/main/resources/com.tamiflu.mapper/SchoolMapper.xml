@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tamiflu.mapper.SchoolMapper">
+    <!--    查询所有的方法-->
+    <select id="findAllSchools" resultType="School">
+        select * from school
+    </select>
+    <!--    分页查询-->
+    <select id="findSchoolsByPage" resultType="School">
+        select school_id,school_name,info
+        from school limit #{start},#{rows}
+    </select>
+    <!--    查询总条数-->
+    <select id="findTotals" resultType="Long">
+        select count(school_id) from school
+    </select>
+<!--    按学院号删除学院-->
+    <delete id="deleteSchoolById" parameterType="String">
+        delete from school where school_id=#{schoolId}
+    </delete>
+<!--    插入学院数据-->
+    <insert id="insertSchool" parameterType="School">
+        insert into school values (#{schoolId},#{schoolName},#{info})
+    </insert>
+<!--    更新学院数据-->
+    <update id="updateSchool" parameterType="School">
+        update school set school_name=#{schoolName},info=#{info}
+        where school_id=#{schoolId}
+    </update>
+<!--    动态查找部分学院-->
+    <select id="findSpecificSchools" resultType="School" parameterType="School">
+        select school_id,school_name,info from school
+        <where>
+            <if test="schoolId != null">
+                school_id like '%${schoolId}%'
+            </if>
+
+            <if test="schoolName != null">
+                and school_name like  '%${schoolName}%'
+            </if>
+        </where>
+    </select>
+<!--    根据学院号查询学院-->
+    <select id="findSchoolById" resultType="School" parameterType="String">
+        select * from school where school_id=#{schoolId}
+    </select>
+</mapper>

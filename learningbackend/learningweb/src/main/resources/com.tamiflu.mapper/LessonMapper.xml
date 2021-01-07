@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tamiflu.mapper.LessonMapper">
+    <!--
+        多对多授课信息resultMap
+    -->
+    <resultMap id="teachesMap" type="Lesson">
+        <id column="lesson_id" property="lessonId"/>
+        <result column="lesson_name" property="lessonName"/>
+        <result column="school_id" property="schoolId"/>
+        <collection property="listTeacher" ofType="Teacher">
+            <id column="tea_id" property="teaId"/>
+            <result column="name" property="name"/>
+        </collection>
+    </resultMap>
+
+    <!--    配置结果集，用来连接查询开课学院名称-->
+    <resultMap id="LessonRes" type="Lesson">
+        <id property="lessonId" column="lesson_id"/>
+        <result property="lessonName" column="lesson_name"/>
+        <result property="schoolId" column="school_id"/>
+        <result property="info" column="info"/>
+        <association property="school" javaType="School">
+            <id property="schoolId" column="school_id"/>
+            <result property="schoolName" column="school_name"></result>
+            <result property="info" column="info"></result>
+        </association>
+    </resultMap>
+<!--    获取所有课程信息-->
+    <select id="findAllLessons" resultType="Lesson">
+        select * from lesson
+    </select>
+<!--    动态条件查找课程信息-->
+    <select id="findLessons" parameterType="Lesson" resultMap="LessonRes">
+        select * from lesson
+        left join school
+        on lesson.school_id = school.school_id
+        <where>
+            <if test="lessonId != null">
+                lesson.lesson_id like '%${lessonId}%'
+            </if>
+            <if test="lessonName != null">
+                and lesson.lesson_name like '%${lessonName}%'
+            </if>
+            <if test="schoolId != null">
+                and lesson.school_id like '%${schoolId}%'
+            </if>
+        </where>
+    </select>
+<!--    更新课程信息-->
+    <update id="updateLesson" parameterType="Lesson">
+        update lesson set lesson_name=#{lessonName},school_id=#{schoolId},info=#{info}
+        where lesson_id=#{lessonId}
+    </update>
+<!--    根据课程号删除课程-->
+    <delete id="deleteLessonById" parameterType="String">
+        delete from lesson where lesson_id=#{lessonId}
+    </delete>
+<!--    添加新课程-->
+    <insert id="insertLesson" parameterType="Lesson">
+        insert into lesson values (#{lessonId},#{lessonName},#{schoolId},#{info})
+    </insert>
+
+<!--    动态条件连接查询授课信息-->
+    <select id="findTeachesInfo" parameterType="TeachesInfoCondition" resultMap="teachesMap">
+        select * from
+        (select lesson_id,lesson_name,school_id from lesson
+        <where>
+            <if test="condition != null">
+                <if test="condition.lessonId != null and condition.lessonId != ''">
+                    lesson.lesson_id=#{condition.lessonId}
+                </if>
+                <if test="condition.schoolId != null and condition.schoolId != ''">
+                    and lesson.school_id=#{condition.schoolId}
+                </if>
+            </if>
+        </where>
+        ORDER BY lesson_id
+        limit #{start},#{size}
+        ) le
+        inner join teaches
+        on le.lesson_id=teaches.lesson_id
+        inner join teacher
+        on teacher.tea_id=teaches.tea_id
+        <where>
+            <if test="condition != null">
+
+                <if test="condition.teaId != null and condition.teaId != ''">
+                    teacher.tea_id=#{condition.teaId}
+                </if>
+            </if>
+        </where>
+    </select>
+<!--    根据学院id和教师id分页获取所有课程-->
+    <select id="findLessonsBySchoolAndTea" resultType="Lesson">
+        select distinct lesson.lesson_id,lesson.lesson_name,lesson.school_id,lesson.info
+        from lesson
+        inner join teaches
+        on teaches.lesson_id=lesson.lesson_id
+        <where>
+            <if test="schoolId != null and schoolId != ''">
+                lesson.school_id=#{schoolId}
+            </if>
+            <if test="teaId != null and teaId != ''">
+                and teaches.tea_id=#{teaId}
+            </if>
+        </where>
+    </select>
+</mapper>
