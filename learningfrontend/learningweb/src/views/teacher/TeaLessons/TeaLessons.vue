@@ -4,7 +4,7 @@
       <el-col :span="6" v-for="(item, index) in lessonList" :key="index">
         <el-card :body-style="{ padding: '0px' }" style="margin: 10px 10px">
           <img
-            src="https://p.ananas.chaoxing.com/star3/270_160c/6ce77a10dd3268daa7ba6c93e5e76459.jpg"
+            src="https://unpkg.zhimg.com/tamiflu233-assets@1.0.4/img/cover3.jpg"
             alt=""
             class="card-img"
           />

@@ -27,9 +27,7 @@
         <el-menu-item index="neededquestions">
           <span slot="title">待答提问</span>
         </el-menu-item>
-        
       </el-submenu>
-      
     </el-menu>
   </div>
 </template>
@@ -67,6 +65,9 @@ export default {
   min-height: 400px;
 }
 .el-menu-vertical > ul {
+  height: 100%;
+}
+.el-menu {
   height: 100%;
 }
 </style>

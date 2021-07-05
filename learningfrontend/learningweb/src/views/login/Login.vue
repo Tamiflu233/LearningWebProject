@@ -9,7 +9,8 @@
         :rules="rules"
         label-suffix=" : "
       >
-        <h2 class="login-title color-main">教学辅导交流系统</h2>
+        <div class="siteicon"></div>
+        <h2 class="login-title color-main">教学资源共享与答疑系统</h2>
         <el-form-item prop="username">
           <el-input
             clearable
@@ -98,7 +99,7 @@ export default {
     };
   },
   methods: {
-    ...mapMutations(["changeLogin", "saveUsername","saveNickname"]),
+    ...mapMutations(["changeLogin", "saveUsername", "saveNickname"]),
     showPwd() {
       if (this.pwdType === "password") {
         this.pwdType = "";
@@ -107,11 +108,13 @@ export default {
       }
     },
     saveLoginNick() {
-      getNickname(this.loginForm.username).then(res => {
-        this.saveNickname({nickname: res.data})
-      }).catch(err => {
-        console.log("获取昵称失败！");
-      })
+      getNickname(this.loginForm.username)
+        .then((res) => {
+          this.saveNickname({ nickname: res.data });
+        })
+        .catch((err) => {
+          console.log("获取昵称失败！");
+        });
     },
     handleLogin() {
       this.$refs.loginForm.validate((valid) => {
@@ -170,7 +173,7 @@ export default {
       .querySelector("body")
       .setAttribute(
         "style",
-        "background:url('https://static.zhihu.com/heifetz/assets/sign_bg.db29b0fb.png') "
+        "background:url('https://pic3.zhimg.com/v2-56164ef0695767475935c9e019c594ae_r.jpg') "
       );
 
     next();
@@ -186,16 +189,28 @@ export default {
 </script>
 
 <style scoped>
+@font-face {
+  font-family: "Candyhome"; /* 字体名自定义即可 */
+  src: url("https://cdn.jsDelivr.net/gh/Tamiflu233/cdn/fonts/Candy.ttf"); /* 字体文件路径 */
+  font-display: swap;
+}
 .login-form-layout {
   position: absolute;
   left: 0;
   right: 0;
   width: 400px;
   margin: 150px auto;
+  opacity: 0.9;
   border-top: 10px solid #409eff;
 }
-
+.siteicon {
+  width: 96px;
+  height: 96px;
+  background: url("https://cdn.jsDelivr.net/gh/Tamiflu233/AssetsRepo/img/android-chrome-96x96.png");
+  margin: 0 auto;
+}
 .login-title {
+  font-family: "Candyhome", sans-serif;
   text-align: center;
 }
 

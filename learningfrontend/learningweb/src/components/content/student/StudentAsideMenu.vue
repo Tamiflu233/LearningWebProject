@@ -79,6 +79,9 @@ export default {
 .el-menu-vertical > ul {
   height: 100%;
 }
+.el-menu {
+  height: 100%;
+}
 </style>
 
 <style lang="css">

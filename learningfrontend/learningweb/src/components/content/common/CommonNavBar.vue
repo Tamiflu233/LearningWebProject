@@ -18,7 +18,7 @@
       >
         <i class="el-icon-menu"></i>
       </div>
-      <div class="logo">教学辅导交流系统</div>
+      <div class="logo">教学资源共享与答疑系统</div>
       <div class="header-right">
         <div class="header-user-con">
           <!-- 消息中心 -->

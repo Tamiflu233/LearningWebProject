@@ -196,7 +196,7 @@ export default {
                     message: msgs[1],
                   });
                   this.registerForm = { sex: "男" };
-                  this.$router.push('/login')
+                  this.$router.push("/login");
                 } else {
                   this.$message({
                     type: "warning",
@@ -204,7 +204,6 @@ export default {
                   });
                   this.registerForm = { sex: "男" };
                 }
-                
               } else {
                 this.$message.error(res.msg);
                 this.registerForm = { sex: "男" };
@@ -238,7 +237,7 @@ export default {
       .querySelector("body")
       .setAttribute(
         "style",
-        "background:url('https://static.zhihu.com/heifetz/assets/sign_bg.db29b0fb.png') "
+        "background:url('https://pic3.zhimg.com/v2-56164ef0695767475935c9e019c594ae_r.jpg') "
       );
     next();
   },
@@ -254,16 +253,23 @@ export default {
 </script>
 
 <style scoped>
+@font-face {
+  font-family: "Candyhome"; /* 字体名自定义即可 */
+  src: url("https://cdn.jsDelivr.net/gh/Tamiflu233/cdn/fonts/Candy.ttf"); /* 字体文件路径 */
+  font-display: swap;
+}
 .register-form-layout {
   position: absolute;
   left: 0;
   right: 0;
   width: 400px;
   margin: 90px auto;
+  opacity: 0.9;
   border-top: 10px solid #409eff;
 }
 
 .register-title {
+  font-family: "Candyhome", sans-serif;
   text-align: center;
 }
 

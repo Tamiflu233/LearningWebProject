@@ -27,7 +27,7 @@
       </div>
       <img
         class="lesson-img"
-        src="https://p.ananas.chaoxing.com/star3/270_160c/6ce77a10dd3268daa7ba6c93e5e76459.jpg"
+        src="https://unpkg.zhimg.com/tamiflu233-assets@1.0.4/img/cover3.jpg"
         alt=""
       />
     </el-card>
@@ -138,7 +138,7 @@
 
 <script>
 import avatar from "assets/img/user_avatar.jpg";
-import { mapState,mapMutations } from "vuex";
+import { mapState, mapMutations } from "vuex";
 import { formatDate } from "common/utils";
 import {
   findSchoolById,
@@ -162,7 +162,7 @@ export default {
       rules: {
         teaId: [{ required: true, message: "请选择教师!!", trigger: "blur" }],
         title: [{ required: true, message: "请输入标题!!", trigger: "blur" }],
-        content: [{ required: true, message: "请输入内容!!", trigger: "blur" }]
+        content: [{ required: true, message: "请输入内容!!", trigger: "blur" }],
       },
       teaOptions: [],
     };
@@ -177,12 +177,12 @@ export default {
     ...mapState(["lessonInfo", "username", "nickname"]),
   },
   methods: {
-    ...mapMutations(["saveQuestion","saveAnswer"]),
+    ...mapMutations(["saveQuestion", "saveAnswer"]),
     SearchDetail(item) {
       // console.log(item);
-      this.saveQuestion({question: item})
-      this.saveAnswer({answer: item.answer})
-      this.$router.push('questiondetail')
+      this.saveQuestion({ question: item });
+      this.saveAnswer({ answer: item.answer });
+      this.$router.push("questiondetail");
     },
     Reset() {
       this.questionForm = {};
@@ -215,13 +215,12 @@ export default {
         if (valid) {
           // 发送异步请求到Springboot项目
           this.save();
-          
         } else {
           // console.log("error submit!!");
           this.$message.error("当前输入的数据不合法!!");
           return false;
         }
-        this.questionForm = {}
+        this.questionForm = {};
       });
     },
     findSize(size) {
