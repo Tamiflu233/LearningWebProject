@@ -377,3 +377,30 @@ template {
 [hidden] {
   display: none;
 }
+
+/* 滚动条 */
+
+::-webkit-scrollbar {
+  width: 10px !important;
+  height: 10px !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #4AB3F8 !important;
+  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.4) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.4) 75%, transparent 75%, transparent) !important;
+  border-radius: 2em !important;
+}
+
+::-webkit-scrollbar-corner {
+  background-color: transparent !important;
+}
+
+::-moz-selection {
+  color: #fff;
+  background-color: #4AB3F8 !important;
+}
+
+.history_slide {
+  background-color: transparent !important;
+}
+

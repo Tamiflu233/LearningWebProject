@@ -8,7 +8,7 @@
         <el-aside :width="width"
           ><teacher-aside-menu></teacher-aside-menu
         ></el-aside>
-        <el-main>
+        <el-main class="homemain">
           <el-tabs
             v-model="activeName"
             type="border-card"
@@ -37,7 +37,7 @@
 <script>
 import CommonNavBar from "components/content/common/CommonNavBar";
 import TeacherAsideMenu from "components/content/teacher/TeacherAsideMenu";
-import { mapState} from "vuex";
+import { mapState } from "vuex";
 export default {
   name: "TeacherHome",
   data() {
@@ -63,7 +63,6 @@ export default {
     },
   },
   methods: {
-    
     handleClick(tab) {
       this.$router.replace("/teacher/" + tab.name);
     },
@@ -86,10 +85,20 @@ export default {
 
     next();
   },
-  created() {
-  }
+  created() {},
 };
 </script>
 
 <style scoped>
+.el-aside {
+  background-color: #fff;
+  border-right: 1px solid #ddd;
+  height: calc(100vh - 70px);
+}
+</style>
+<style>
+#teacher-home .homemain {
+  height: calc(100vh - 70px);
+  opacity: 0.9;
+}
 </style>

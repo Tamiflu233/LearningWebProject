@@ -71,17 +71,17 @@
       </el-col>
     </el-row>
     <el-table :height="368" :data="tableData" style="width: 95%">
-      <el-table-column type="selection" width="70"> </el-table-column>
-      <el-table-column label="课程号" prop="lessonId" width="230" sortable>
+      <el-table-column type="selection" width="50"> </el-table-column>
+      <el-table-column label="课程号" prop="lessonId" width="150" sortable>
       </el-table-column>
-      <el-table-column label="课程名称" prop="lessonName" width="230">
+      <el-table-column label="课程名称" prop="lessonName" width="150">
       </el-table-column>
-      <el-table-column label="开课学院" prop="school.schoolName" width="230">
+      <el-table-column label="开课学院" prop="school.schoolName" width="150">
       </el-table-column>
       <el-table-column
         label="课程简介"
         prop="info"
-        width="350"
+        width="220"
       ></el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">

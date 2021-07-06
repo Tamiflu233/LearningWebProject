@@ -1,6 +1,19 @@
 <template>
   <div id="register">
     <el-card class="register-form-layout">
+      <el-tooltip
+        class="item"
+        effect="dark"
+        content="返回登录"
+        placement="top-start"
+      >
+        <el-button
+          @click="onBack"
+          class="back"
+          plain
+          icon="el-icon-arrow-left"
+        ></el-button>
+      </el-tooltip>
       <el-form
         autocomplete="on"
         :model="registerForm"
@@ -183,6 +196,9 @@ export default {
     };
   },
   methods: {
+    onBack() {
+      this.$router.back(-1);
+    },
     handleRegister() {
       this.$refs.registerForm.validate((valid) => {
         if (valid) {
@@ -237,7 +253,7 @@ export default {
       .querySelector("body")
       .setAttribute(
         "style",
-        "background:url('https://pic3.zhimg.com/v2-56164ef0695767475935c9e019c594ae_r.jpg') "
+        "background:url('https://cdn.jsDelivr.net/gh/Tamiflu233/AssetsRepo/img/bg5.jpg');background-size:cover;"
       );
     next();
   },
@@ -258,12 +274,19 @@ export default {
   src: url("https://cdn.jsDelivr.net/gh/Tamiflu233/cdn/fonts/Candy.ttf"); /* 字体文件路径 */
   font-display: swap;
 }
+.el-card {
+  position: relative;
+}
+.back {
+  position: absolute;
+  top: 35px;
+}
 .register-form-layout {
   position: absolute;
   left: 0;
   right: 0;
   width: 400px;
-  margin: 90px auto;
+  margin: 50px auto;
   opacity: 0.9;
   border-top: 10px solid #409eff;
 }

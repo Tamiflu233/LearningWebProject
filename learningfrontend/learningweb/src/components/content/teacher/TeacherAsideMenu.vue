@@ -83,4 +83,7 @@ export default {
 .el-submenu__title:focus {
   background-color: transparent !important;
 }
+.el-menu-vertical {
+  border-right: none !important;
+}
 </style>

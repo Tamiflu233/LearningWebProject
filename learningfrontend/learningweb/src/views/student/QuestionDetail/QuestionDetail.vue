@@ -6,7 +6,9 @@
       </div>
       <el-container class="detail">
         <el-aside class="aside" width="200px">
-          <div class="avatar"><img class="avatar-img" :src="avatarUrl" alt="" /></div>
+          <div class="avatar">
+            <img class="avatar-img" :src="avatarUrl" alt="" />
+          </div>
           <div class="nickname">{{ question.nickname }}</div>
         </el-aside>
         <el-main class="main"
@@ -21,7 +23,9 @@
     <el-card v-if="answer.aid !== null" class="box-card">
       <el-container class="detail">
         <el-aside width="200px" class="aside"
-          ><div class="avatar"><img class="avatar-img" :src="avatarUrl" alt="" /></div>
+          ><div class="avatar">
+            <img class="avatar-img" :src="avatarUrl" alt="" />
+          </div>
           <div class="nickname">
             {{ question.teacher.name + "老师" }}
           </div></el-aside
@@ -70,7 +74,7 @@ export default {
 .nickname {
   margin-top: 10px;
   padding-left: 10px;
-  color: #409EFF;
+  color: #409eff;
 }
 .box-card {
   width: 800px;
@@ -85,11 +89,13 @@ export default {
   height: 100px;
   border-radius: 5px;
 }
-.aside,.main {
-  height: 227px;
+.aside,
+.main {
+  min-height: 227px;
 }
 .main {
   position: relative;
+  word-wrap: break-word;
 }
 .date {
   position: absolute;

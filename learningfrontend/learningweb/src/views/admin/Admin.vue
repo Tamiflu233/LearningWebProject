@@ -8,7 +8,7 @@
         <el-aside :width="width"
           ><admin-aside-menu></admin-aside-menu
         ></el-aside>
-        <el-main>
+        <el-main class="homemain">
           <el-tabs
             v-model="activeName"
             type="border-card"
@@ -72,4 +72,7 @@ export default {
 </script>
 
 <style scoped>
+#admin .homemain {
+  opacity: 0.9;
+}
 </style>

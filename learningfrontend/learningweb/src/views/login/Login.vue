@@ -173,7 +173,7 @@ export default {
       .querySelector("body")
       .setAttribute(
         "style",
-        "background:url('https://pic3.zhimg.com/v2-56164ef0695767475935c9e019c594ae_r.jpg') "
+        "background:url('https://cdn.jsDelivr.net/gh/Tamiflu233/AssetsRepo/img/bg5.jpg');background-size:cover;"
       );
 
     next();

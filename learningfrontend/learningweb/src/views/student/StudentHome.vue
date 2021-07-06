@@ -8,7 +8,7 @@
         <el-aside :width="width"
           ><student-aside-menu></student-aside-menu
         ></el-aside>
-        <el-main>
+        <el-main class="homemain">
           <el-tabs
             v-model="activeName"
             type="border-card"
@@ -90,4 +90,15 @@ export default {
 </script>
 
 <style scoped>
+.el-aside {
+  background-color: #fff;
+  border-right: 1px solid #ddd;
+  height: calc(100vh - 70px);
+}
+</style>
+<style>
+#student-home .homemain {
+  height: calc(100vh - 70px);
+  opacity: 0.9;
+}
 </style>

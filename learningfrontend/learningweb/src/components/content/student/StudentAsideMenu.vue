@@ -28,7 +28,6 @@
         <el-menu-item index="allquestions">
           <span slot="title">查看全部留言</span>
         </el-menu-item>
-        
       </el-submenu>
       <el-submenu class="el-submenu" index="3">
         <template class="el-submenu-title" slot="title">
@@ -38,7 +37,6 @@
         <el-menu-item index="myquestions">
           <span slot="title">查看我的提问</span>
         </el-menu-item>
-        
       </el-submenu>
     </el-menu>
   </div>
@@ -69,9 +67,6 @@ export default {
 </script>
 
 <style scoped>
-.el-menu-vertical {
-  height: calc(100vh - 71px);
-}
 .el-menu-vertical:not(.el-menu--collapse) {
   width: 250px;
   min-height: 400px;
@@ -79,9 +74,9 @@ export default {
 .el-menu-vertical > ul {
   height: 100%;
 }
-.el-menu {
+/* .el-menu {
   height: 100%;
-}
+} */
 </style>
 
 <style lang="css">
@@ -91,8 +86,12 @@ export default {
 .el-menu-item:hover {
   background-color: rgb(40, 52, 70) !important;
 } */
-.el-menu-item:focus,
-.el-submenu__title:focus {
+#student-aside-menu .el-menu-item:focus,
+#student-aside-menu .el-submenu__title:focus {
   background-color: transparent !important;
+}
+#student-aside-menu .el-menu-vertical {
+  border-right: none !important;
+  height: 100% !important;
 }
 </style>

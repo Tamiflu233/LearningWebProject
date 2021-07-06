@@ -11,7 +11,7 @@
           circle
         ></el-button>
       </div>
-      
+
       <el-container class="detail">
         <el-aside class="aside" width="200px">
           <div class="avatar">
@@ -146,14 +146,15 @@ export default {
     ...mapMutations(["saveQuestion", "saveAnswer"]),
     delQuestion() {
       console.log("!!");
-      deleteQuestion(this.question.qid).then((res) => {
+      deleteQuestion(this.question.qid)
+        .then((res) => {
           if (res.code === 200) {
             this.$message({
               type: "success",
               message: res.msg,
             });
-            this.saveQuestion({question: null})
-            this.$router.go(-1)
+            this.saveQuestion({ question: null });
+            this.$router.go(-1);
           } else {
             this.$message.error(res.code + "错误!" + res.msg);
           }
@@ -338,10 +339,11 @@ export default {
 }
 .aside,
 .main {
-  height: 227px;
+  min-height: 227px;
 }
 .main {
   position: relative;
+  word-wrap: break-word;
 }
 .date {
   position: absolute;
