@@ -40,3 +40,14 @@ export function saveFileInfo(lessonId,teaId,name,url,teaName,size) {
     timeout: 5000
   })
 }
+export function deleteFile(id,path) {
+  return request({
+    url: '/file/deleteFile',
+    method: 'post',
+    data: {
+      id: id,
+      path: path
+    },
+    timeout: 5000
+  })
+}

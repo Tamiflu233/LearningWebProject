@@ -13,17 +13,24 @@
     </div>
     <div class="file-publisher">上传者: {{ fileInfo.teaName }}</div>
     <div class="file-size">文件大小: {{ fileInfo.size }}</div>
-    <div class="file-date">上传日期: {{ fileInfo.date }}</div>
+    <div class="file-date">上传日期: {{ fileInfo.date | formatDate }}</div>
   </el-card>
 </template>
 
 <script>
 import { download } from "network/file/LessonFile.js";
+import { formatDate } from "common/utils";
 export default {
   name: "FileItem",
   components: {},
   data() {
     return {};
+  },
+  filters: {
+    formatDate(time) {
+      let date = new Date(time);
+      return formatDate(date, "yyyy-MM-dd hh:mm"); //年-月-日 时分
+    },
   },
   methods: {
     downloadFile() {

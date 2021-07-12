@@ -23,10 +23,13 @@
             action="http://localhost:8989/api/file/upload/"
             :file-list="fileList"
             :on-success="uploadSuccess"
+            :on-remove="removeFile"
             :on-error="error"
             multiple
           >
-            <el-button size="small" type="primary">点击上传</el-button>
+            <el-button class="upload-btn" size="small" type="primary"
+              >点击上传</el-button
+            >
             <div class="el-upload__tip" slot="tip">
               文件大小不超过100mb，多文件上传请压缩
             </div>
@@ -57,7 +60,7 @@
 
 <script>
 import FileItem from "components/content/common/FileItem";
-import { saveFileInfo } from "network/file/LessonFile.js";
+import { saveFileInfo, getFiles, deleteFile } from "network/file/LessonFile.js";
 export default {
   name: "TeaLessonFiles",
   components: {
@@ -94,13 +97,13 @@ export default {
       //处理每页显示记录发生变化的方法
       // console.log(size);
       this.size = size;
-      this.findAllQuestions(this.pageNow, size);
+      this.findAllTableData(this.pageNow, size);
     },
     findPage(page) {
       //处理分页的相关方法
       // console.log(page);
       this.pageNow = page;
-      this.findAllQuestions(page, this.size);
+      this.findAllTableData(page, this.size);
     },
 
     uploadSuccess(response, file, fileList) {
@@ -118,6 +121,11 @@ export default {
           .then((res) => {
             console.log(res);
             if (res.code === 200) {
+              this.$message({
+                type: "success",
+                message: res.msg,
+              });
+              this.findAllTableData(this.pageNow, this.size);
             } else {
             }
           })
@@ -125,13 +133,55 @@ export default {
             console.log(err);
             this.$message.error("404错误！");
           });
-      }else {
+      } else {
         this.$message.error(response.msg);
       }
     },
     error() {},
+    findAllTableData(page, size) {
+      page = page ? page : this.pageNow;
+      size = size ? size : this.size;
+      getFiles(
+        page,
+        size,
+        this.$store.state.lessonInfo.lessonId,
+        this.$store.state.teaInfo.teaId
+      )
+        .then((res) => {
+          // console.log(res.code);
+          if (res.code === 200) {
+            this.fileList = res.data.list;
+            this.total = res.data.total;
+
+            // console.log(this.tableData);
+          }
+        })
+        .catch((err) => {
+          this.$message.error("404错误！");
+        });
+    },
+    removeFile(file, fileList) {
+      deleteFile(file.id, file.url)
+        .then((res) => {
+          if (res.code == 200) {
+            this.$message({
+              type: "success",
+              message: res.msg,
+            });
+            this.findAllTableData(this.pageNow, this.size);
+          } else {
+            this.$message.error(res.msg);
+          }
+        })
+        .catch((err) => {
+          this.$message.error("404错误!");
+        });
+    },
   },
   computed: {},
+  created() {
+    this.findAllTableData();
+  },
 };
 </script>
 
@@ -151,7 +201,6 @@ export default {
   font-size: 20px;
   text-align: center;
 }
-.el-upload {
-  width: 100%;
-}
 </style>
+
+

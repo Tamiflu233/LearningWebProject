@@ -3,6 +3,7 @@ package com.tamiflu.controller;
 import com.github.pagehelper.PageInfo;
 import com.tamiflu.entity.FileInfo;
 import com.tamiflu.service.FileService;
+import com.tamiflu.vo.DelFileParams;
 import com.tamiflu.vo.FileParamsVO;
 import com.tamiflu.vo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,12 +63,12 @@ public class FileController {
 
                         Long sizeB = multipartFiles[i].getSize();
                         String size = sizeB + "B";
-                        if (sizeB >= 1024) {
-                            size = String.format("%.2f", sizeB / 1024.0) + "KB";
+                        if (sizeB >= 1024 * 1024 * 1024) {
+                            size = String.format("%.2f", sizeB / 1024.0 / 1024.0 / 1024.0) + "GB";
                         } else if (sizeB >= 1024 * 1024) {
                             size = String.format("%.2f", sizeB / 1024.0 / 1024.0) + "MB";
-                        } else if (sizeB >= 1024 * 1024 * 1024) {
-                            size = String.format("%.2f", sizeB / 1024.0 / 1024.0 / 1024.0) + "GB";
+                        } else if (sizeB >= 1024) {
+                            size = String.format("%.2f", sizeB / 1024.0) + "KB";
                         }
                         info.setSize(size);
                         info.setName(multipartFiles[i].getOriginalFilename());
@@ -133,11 +134,13 @@ public class FileController {
         return result;
     }
 
-    @GetMapping("/deleteFile")
-    public Result deleteFile(String id) {
+    @PostMapping("/deleteFile")
+    public Result deleteFile(@RequestBody DelFileParams delFileParams) {
         Result result = new Result();
         try {
-            fileService.deleteFile(id);
+            fileService.deleteFile(delFileParams.getId());
+            File file = new File(delFileParams.getPath());
+            file.delete();
             result.setMsg("删除文件成功!");
         } catch (Exception e) {
             result.setCode(500);
