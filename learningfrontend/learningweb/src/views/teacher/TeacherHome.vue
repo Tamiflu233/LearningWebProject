@@ -18,7 +18,10 @@
             <el-tab-pane label="授课列表" name="tealessons">
               <router-view></router-view>
             </el-tab-pane>
-            <el-tab-pane label="待答提问" name="neededquestions">
+            <!-- <el-tab-pane label="待答提问" name="neededquestions">
+              <router-view></router-view>
+            </el-tab-pane> -->
+            <el-tab-pane label="课程资料" name="teaLessonFiles" disabled>
               <router-view></router-view>
             </el-tab-pane>
             <el-tab-pane label="课程提问" name="tealessonquestions" disabled>

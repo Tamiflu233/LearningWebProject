@@ -43,6 +43,7 @@ public class MyMvcConfig implements WebMvcConfigurer  {
         excludePath.add("/api/account/**");  //登录
         excludePath.add("/api/login/**");     //注册
         excludePath.add("/api/school/**");
+        excludePath.add("/api/file/**");
         excludePath.add("/static/**");  //静态资源
         excludePath.add("/assets/**");  //静态资源
 //        excludePath.add("/");

@@ -30,6 +30,9 @@ server:
   port: 8989
   servlet:
     context-path: /
+  tomcat:
+    uri-encoding: UTF-8
+    max-http-header-size: 8096
 #mybatis
 mybatis:
   mapper-locations: classpath:com.tamiflu.mapper/*.xml
@@ -43,4 +46,5 @@ pagehelper:
   support-methods-arguments: true
   page-size-zero: false
   params: count=countsql
+
 

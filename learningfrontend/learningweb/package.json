@@ -11,10 +11,12 @@
     "axios": "^0.21.0",
     "core-js": "^3.6.5",
     "element-ui": "^2.14.1",
+    "jquery": "^3.6.0",
     "vue": "^2.6.11",
     "vue-router": "^3.4.9",
     "vuex": "^3.6.0",
-    "vuex-persistedstate": "^4.0.0-beta.1"
+    "vuex-persistedstate": "^4.0.0-beta.1",
+    "wangeditor": "^4.7.5"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

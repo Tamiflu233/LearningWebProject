@@ -24,12 +24,16 @@ spring:
     static-locations: classpath:/static/, classpath:/META-INF/resources/, classpath:/resources/, classpath:/public/
   mvc:
     static-path-pattern: /**
-
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
 #应用服务 WEB 访问端口
 server:
   port: 8989
   servlet:
     context-path: /
+
 #mybatis
 mybatis:
   mapper-locations: classpath:com.tamiflu.mapper/*.xml
@@ -43,4 +47,5 @@ pagehelper:
   support-methods-arguments: true
   page-size-zero: false
   params: count=countsql
+
 

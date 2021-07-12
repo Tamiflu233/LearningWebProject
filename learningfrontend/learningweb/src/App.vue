@@ -24,7 +24,8 @@ export default {
 }
 a,
 button,
-img {
+img,
+i {
   cursor: url(https://cdn.jsdelivr.net/npm/kang-static/Hexo/img/pointer.cur),
     default !important;
 }

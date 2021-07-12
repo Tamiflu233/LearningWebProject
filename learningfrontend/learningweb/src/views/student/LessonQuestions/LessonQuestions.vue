@@ -74,6 +74,7 @@
               :rows="8"
               placeholder="提问..."
             ></el-input>
+            
           </el-col>
         </el-form-item>
       </el-form>
@@ -140,6 +141,7 @@
 import avatar from "assets/img/user_avatar.jpg";
 import { mapState, mapMutations } from "vuex";
 import { formatDate } from "common/utils";
+import wangEditor from "wangeditor";
 import {
   findSchoolById,
   findQuestions,
@@ -152,6 +154,7 @@ export default {
   name: "LessonQuestions",
   data() {
     return {
+      text: "",
       avatarUrl: avatar,
       schoolName: "",
       questionList: [],
@@ -167,6 +170,8 @@ export default {
       teaOptions: [],
     };
   },
+  components: {
+  },
   filters: {
     formatDate(time) {
       let date = new Date(time);
@@ -178,6 +183,9 @@ export default {
   },
   methods: {
     ...mapMutations(["saveQuestion", "saveAnswer"]),
+    getQueEditor(text) {
+      console.log("保存文本");
+    },
     SearchDetail(item) {
       // console.log(item);
       this.saveQuestion({ question: item });

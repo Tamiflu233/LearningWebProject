@@ -3,6 +3,9 @@
     <el-card class="box-card">
       <div slot="header" class="clearfix title">
         <span>{{ "课程名称：" + lessonInfo.lessonName }}</span>
+        <el-link :underline="false" class="files-info" type="primary" :href="fileUrl"
+          >查看课程资料<i class="el-icon-view el-icon--right"></i>
+        </el-link>
       </div>
       <div class="detail">
         <el-tag
@@ -104,6 +107,7 @@ export default {
       total: 0,
       size: 5,
       pageNow: 1,
+      fileUrl: "/teacher/teaLessonFiles"
     };
   },
   filters: {
@@ -222,6 +226,7 @@ export default {
 .title {
   font-size: 24px;
   font-style: bold;
+  position: relative;
 }
 .lesson-img {
   position: absolute;
@@ -261,5 +266,11 @@ export default {
   position: absolute;
   right: 15px;
   bottom: 5px;
+}
+.files-info {
+  position: absolute;
+  font-size: 16px;
+  right: 8px;
+  top: 8px;
 }
 </style>

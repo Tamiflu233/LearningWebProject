@@ -11,4 +11,5 @@ public interface AnswerMapper {
     public void deleteAnswer(String aid);
 //按qid查找回答
     public Answer findAnswerByQid(String qid);
+    
 }

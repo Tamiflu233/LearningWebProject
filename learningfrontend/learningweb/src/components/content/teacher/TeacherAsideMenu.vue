@@ -19,7 +19,7 @@
           <span slot="title">授课列表</span>
         </el-menu-item>
       </el-submenu>
-      <el-submenu class="el-submenu" index="2">
+      <!-- <el-submenu class="el-submenu" index="2">
         <template class="el-submenu-title" slot="title">
           <i class="el-icon-notebook-2"></i>
           <span slot="title">待答提问</span>
@@ -27,7 +27,16 @@
         <el-menu-item index="neededquestions">
           <span slot="title">待答提问</span>
         </el-menu-item>
-      </el-submenu>
+      </el-submenu> -->
+      <!-- <el-submenu class="el-submenu" index="2">
+        <template class="el-submenu-title" slot="title">
+          <i class="el-icon-notebook-2"></i>
+          <span slot="title">课程资料</span>
+        </template>
+        <el-menu-item index="teaLessonFiles">
+          <span slot="title">课程资料</span>
+        </el-menu-item>
+      </el-submenu> -->
     </el-menu>
   </div>
 </template>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tamiflu.mapper.FileMapper">
+    <select id="selectAllFiles" resultType="FileInfo">
+        select * from lessonfiles
+        <where>
+            <if test="lessonId != null and lessonId != ''">
+                lesson_id=#{lessonId}
+            </if>
+            <if test="teaId != null and teaId != ''">
+                and tea_id=#{teaId}
+            </if>
+        </where>
+    </select>
+    <delete id="deleteFile" parameterType="String">
+        delete from lessonfiles where id=#{id}
+    </delete>
+    <insert id="insertFile" parameterType="FileInfo">
+        insert into lessonfiles (lesson_id,tea_id,name,url,teaName,size)
+        values (#{lessonId},#{teaId},#{name},#{url},#{teaName},#{size})
+    </insert>
+</mapper>

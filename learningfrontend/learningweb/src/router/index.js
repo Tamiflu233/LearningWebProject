@@ -20,7 +20,8 @@ const NeededQuestions = () => import('views/teacher/NeededQuestions/NeededQuesti
 const TeaLessonQuestions = () => import('views/teacher/TeaLessonQuestions/TeaLessonQuestions')
 const TeaLessons = () => import('views/teacher/TeaLessons/TeaLessons')
 const TeaQuestionDetail = () => import('views/teacher/TeaQuestionDetail/TeaQuestionDetail')
-
+// const richText = ()=> import('components/common/richText')
+const TeaLessonFiles = () => import('views/teacher/TeaLessonFiles/TeaLessonFiles')
 // 安装Vue-Router插件
 Vue.use(VueRouter)
 
@@ -102,7 +103,8 @@ const routes = [
       {
         path: 'questiondetail',
         component: QuestionDetail
-      }
+      },
+      
     ]
   },
   {
@@ -128,9 +130,14 @@ const routes = [
       {
         path: 'teaquestiondetail',
         component: TeaQuestionDetail
-      }
+      },
+     {
+       path: 'teaLessonFiles',
+       component: TeaLessonFiles
+     }
     ]
-  }
+  },
+  
   //给路由传参数: 1.动态路由->path:'/detail/:id'
     // 2. this.$router.push({path:'/detail', query: {id = }})
 
