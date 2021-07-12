@@ -3,11 +3,7 @@
     <el-row>
       <el-col :span="6" v-for="(item, index) in lessonList" :key="index">
         <el-card :body-style="{ padding: '0px' }" style="margin: 10px 10px">
-          <img
-            src="https://unpkg.zhimg.com/tamiflu233-assets@1.0.4/img/cover3.jpg"
-            alt=""
-            class="card-img"
-          />
+          <img v-lazy="img.src" alt="" class="card-img" />
           <div style="padding: 14px">
             <span>{{ item.lessonName }}</span>
             <div class="bottom clearfix">
@@ -52,6 +48,11 @@ export default {
   name: "TeaLessons",
   data() {
     return {
+      img: {
+        preview:
+          "https://cdn.jsdelivr.net/gh/Tamiflu233/cdn/img/cover3-min.jpg",
+        src: "https://cdn.jsdelivr.net/gh/Tamiflu233/cdn/img/cover3.jpg",
+      },
       lessonList: [],
       total: 0,
       size: 8,
@@ -59,10 +60,10 @@ export default {
     };
   },
   computed: {
-    ...mapState(["teaInfo","username"]),
+    ...mapState(["teaInfo", "username"]),
   },
   methods: {
-    ...mapMutations(["changeLessonInfo","saveTeaInfo"]),
+    ...mapMutations(["changeLessonInfo", "saveTeaInfo"]),
     findLessonsInfo(page, size) {
       page = page ? page : this.pageNow;
       size = size ? size : this.size;
@@ -94,19 +95,20 @@ export default {
       this.pageNow = page;
       this.findLessonsInfo(page, this.size);
     },
-    
+
     initTeaInfo() {
-      findTeacherByUsername(this.username).then(res => {
-        this.saveTeaInfo({teaInfo: res.data})
-        this.findLessonsInfo()
-      }).catch(err => {
-        console.log("获取教师信息失败");
-      })
+      findTeacherByUsername(this.username)
+        .then((res) => {
+          this.saveTeaInfo({ teaInfo: res.data });
+          this.findLessonsInfo();
+        })
+        .catch((err) => {
+          console.log("获取教师信息失败");
+        });
     },
-    
   },
   created() {
-    this.initTeaInfo()
+    this.initTeaInfo();
   },
 };
 </script>
@@ -116,7 +118,12 @@ export default {
   width: 100%;
   display: block;
 }
-
+img[lazy="loading"] {
+  display: block;
+  width: 260px;
+  height: 260px;
+  margin: 0 auto;
+}
 .lessonId {
   font-size: 13px;
   color: #999;

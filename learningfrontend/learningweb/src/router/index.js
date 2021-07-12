@@ -22,6 +22,7 @@ const TeaLessons = () => import('views/teacher/TeaLessons/TeaLessons')
 const TeaQuestionDetail = () => import('views/teacher/TeaQuestionDetail/TeaQuestionDetail')
 // const richText = ()=> import('components/common/richText')
 const TeaLessonFiles = () => import('views/teacher/TeaLessonFiles/TeaLessonFiles')
+const StuLessonFiles = () => import('views/student/StuLessonFiles/StuLessonFiles')
 // 安装Vue-Router插件
 Vue.use(VueRouter)
 
@@ -104,6 +105,10 @@ const routes = [
         path: 'questiondetail',
         component: QuestionDetail
       },
+      {
+        path: 'stuLessonFiles',
+        component: StuLessonFiles
+      }
       
     ]
   },

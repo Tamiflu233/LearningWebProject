@@ -3,6 +3,9 @@
     <el-card class="box-card">
       <div slot="header" class="clearfix title">
         <span>{{ "课程名称：" + lessonInfo.lessonName }}</span>
+         <el-link :underline="false" class="files-info" type="primary" :href="fileUrl"
+          >查看课程资料<i class="el-icon-view el-icon--right"></i>
+        </el-link>
       </div>
       <div class="detail">
         <el-tag
@@ -27,7 +30,7 @@
       </div>
       <img
         class="lesson-img"
-        src="https://unpkg.zhimg.com/tamiflu233-assets@1.0.4/img/cover3.jpg"
+        v-lazy="img.src"
         alt=""
       />
     </el-card>
@@ -141,7 +144,6 @@
 import avatar from "assets/img/user_avatar.jpg";
 import { mapState, mapMutations } from "vuex";
 import { formatDate } from "common/utils";
-import wangEditor from "wangeditor";
 import {
   findSchoolById,
   findQuestions,
@@ -154,11 +156,17 @@ export default {
   name: "LessonQuestions",
   data() {
     return {
+      img: {
+        preview:
+          "https://cdn.jsdelivr.net/gh/Tamiflu233/cdn/img/cover3-min.jpg",
+        src: "https://cdn.jsdelivr.net/gh/Tamiflu233/cdn/img/cover3.jpg",
+      },
       text: "",
       avatarUrl: avatar,
       schoolName: "",
       questionList: [],
       questionForm: {},
+      fileUrl: "/student/stuLessonFiles",
       total: 0,
       size: 5,
       pageNow: 1,
@@ -298,6 +306,12 @@ export default {
   bottom: 25px;
   right: 25px;
 }
+img[lazy="loading"] {
+  display: block;
+  width: 260px;
+  height: 260px;
+  margin: 0 auto;
+}
 .form-title {
   width: 750px;
   margin-left: 25px;
@@ -359,6 +373,7 @@ export default {
 .title {
   font-size: 24px;
   font-style: bold;
+  position: relative;
 }
 .lesson-img {
   position: absolute;
@@ -398,5 +413,11 @@ export default {
   position: absolute;
   right: 15px;
   bottom: 5px;
+}
+.files-info {
+  position: absolute;
+  font-size: 16px;
+  right: 8px;
+  top: 8px;
 }
 </style>

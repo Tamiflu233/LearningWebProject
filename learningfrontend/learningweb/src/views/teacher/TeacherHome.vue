@@ -77,7 +77,10 @@ export default {
     // 添加背景色
     document
       .querySelector("body")
-      .setAttribute("style", "background-color:rgb(242,244,247) ");
+      .setAttribute(
+        "style",
+        "background:url('https://cdn.jsdelivr.net/gh/Tamiflu233/cdn/img/geometric-leaves.png');"
+      );
 
     next();
   },

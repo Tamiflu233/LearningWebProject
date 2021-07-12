@@ -181,7 +181,9 @@ export default {
 
   beforeRouteLeave(to, from, next) {
     // 去除背景色
-    document.querySelector("body").setAttribute("style", "");
+    document.querySelector("body").setAttribute("style", 
+    "background:url('https://cdn.jsdelivr.net/gh/Tamiflu233/cdn/img/geometric-leaves.png');background-size:cover;"
+    );
 
     next();
   },

@@ -68,6 +68,17 @@ export default {
       this.$router.replace("/admin/" + tab.name);
     },
   },
+  beforeRouteEnter(to, from, next) {
+    // 添加背景色
+    document
+      .querySelector("body")
+      .setAttribute(
+        "style",
+        "background:url('https://cdn.jsDelivr.net/gh/Tamiflu233/cdn/img/geometric-leaves.png');"
+      );
+
+    next();
+  },
 };
 </script>
 

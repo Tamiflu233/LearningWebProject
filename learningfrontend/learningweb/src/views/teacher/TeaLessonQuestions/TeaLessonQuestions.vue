@@ -30,7 +30,7 @@
       </div>
       <img
         class="lesson-img"
-        src="https://unpkg.zhimg.com/tamiflu233-assets@1.0.4/img/cover3.jpg"
+        v-lazy="img.src"
         alt=""
       />
     </el-card>
@@ -101,6 +101,11 @@ export default {
   name: "TeaLessonQuestions",
   data() {
     return {
+      img: {
+        preview:
+          "https://cdn.jsdelivr.net/gh/Tamiflu233/cdn/img/cover3-min.jpg",
+        src: "https://cdn.jsdelivr.net/gh/Tamiflu233/cdn/img/cover3.jpg",
+      },
       avatarUrl: avatar,
       schoolName: "",
       questionList: [],
@@ -189,6 +194,12 @@ export default {
 <style scoped>
 .publish-date {
   margin-bottom: 20px;
+}
+img[lazy="loading"] {
+  display: block;
+  width: 260px;
+  height: 260px;
+  margin: 0 auto;
 }
 .question-title {
   font-size: 19px;

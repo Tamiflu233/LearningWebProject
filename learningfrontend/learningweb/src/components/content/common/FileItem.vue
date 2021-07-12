@@ -1,5 +1,6 @@
 <template>
   <el-card id="file-item">
+    <i class="el-icon-document"></i>
     <div class="file-name">
       文件名: {{ fileInfo.name }}
       <el-link
@@ -75,15 +76,24 @@ export default {
   font-family: "Microsoft YaHei", -apple-system, BlinkMacSystemFont, "Segoe UI",
     "Helvetica Neue", Lato, Roboto, "PingFang SC", sans-serif;
 }
+.el-icon-document {
+  display: inline-block;
+  font-size: 40px;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 30px;
+  left: 30px;
+}
 .file-name {
   position: absolute;
-  left: 15px;
+  left: 100px;
   top: 15px;
 }
 .file-publisher {
   position: absolute;
   bottom: 15px;
-  left: 15px;
+  left: 100px;
 }
 .file-size {
   position: absolute;

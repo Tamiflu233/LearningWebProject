@@ -30,6 +30,9 @@
             <el-tab-pane label="提问详情" name="questiondetail" disabled>
               <router-view></router-view>
             </el-tab-pane>
+            <el-tab-pane label="课程资料" name="stuLessonFiles" disabled>
+              <router-view></router-view>
+            </el-tab-pane>
           </el-tabs>
         </el-main>
       </el-container>
@@ -71,15 +74,18 @@ export default {
       this.$router.go(-1);
     },
   },
+  
   beforeRouteEnter(to, from, next) {
     // 添加背景色
     document
       .querySelector("body")
-      .setAttribute("style", "background-color:rgb(242,244,247) ");
+      .setAttribute(
+        "style",
+        "background:url('https://cdn.jsDelivr.net/gh/Tamiflu233/cdn/img/geometric-leaves.png');"
+      );
 
     next();
   },
-
   beforeRouteLeave(to, from, next) {
     // 去除背景色
     document.querySelector("body").setAttribute("style", "");
@@ -99,6 +105,6 @@ export default {
 <style>
 #student-home .homemain {
   height: calc(100vh - 70px);
-  opacity: 0.9;
+  opacity: 0.9 !important;
 }
 </style>
