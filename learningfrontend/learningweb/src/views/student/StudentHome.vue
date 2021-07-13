@@ -74,14 +74,14 @@ export default {
       this.$router.go(-1);
     },
   },
-  
+
   beforeRouteEnter(to, from, next) {
     // 添加背景色
     document
       .querySelector("body")
       .setAttribute(
         "style",
-        "background:url('https://cdn.jsDelivr.net/gh/Tamiflu233/cdn/img/geometric-leaves.png');"
+        "background:url('https://cdn.jsDelivr.net/gh/Tamiflu233/cdn/img/bg3.jpg');"
       );
 
     next();

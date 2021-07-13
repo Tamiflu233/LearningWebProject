@@ -263,7 +263,7 @@ export default {
       .querySelector("body")
       .setAttribute(
         "style",
-        "background:url('https://cdn.jsdelivr.net/gh/Tamiflu233/cdn/img/geometric-leaves.png');background-size:cover;"
+        "background:url('https://cdn.jsDelivr.net/gh/Tamiflu233/cdn/img/bg3.jpg')"
       );
     next();
   },

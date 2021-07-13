@@ -107,7 +107,7 @@
       ></el-col>
     </el-row>
 
-    <el-dialog title="学院信息" :visible.sync="dialogFormVisible">
+    <el-dialog title="学院信息" :visible.sync="dialogFormVisible" :modal="false">
       <el-form :model="form" ref="schoolForm" label-suffix=" : " :rules="rules">
         <el-form-item
           label="学院号"

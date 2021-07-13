@@ -128,7 +128,7 @@
     </el-row>
 
     <!-- 编辑表单 -->
-    <el-dialog title="课程信息" :visible.sync="dialogFormVisible">
+    <el-dialog title="课程信息" :visible.sync="dialogFormVisible" :modal="false">
       <el-form :model="form" ref="lessonForm" label-suffix=" : " :rules="rules">
         <el-form-item
           label="课程号"

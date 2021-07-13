@@ -126,7 +126,7 @@
         label-suffix=" : "
         :rules="rules"
       >
-        <el-form-item label="教师" prop="teaId" :label-width="formLabelWidth">
+        <el-form-item label="教师" prop="teaId" :label-width="formLabelWidth" :modal="false">
           <el-select
             v-model="form.teaId"
             filterable

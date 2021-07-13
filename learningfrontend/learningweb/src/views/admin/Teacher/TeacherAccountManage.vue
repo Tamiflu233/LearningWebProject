@@ -134,7 +134,7 @@
     </el-row>
 
     <!-- 增改表单 -->
-    <el-dialog title="教师账号信息" :visible.sync="dialogFormVisible">
+    <el-dialog title="教师账号信息" :visible.sync="dialogFormVisible" :modal="false">
       <el-form
         :model="form"
         ref="teaAccountForm"

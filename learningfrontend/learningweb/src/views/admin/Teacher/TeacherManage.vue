@@ -130,7 +130,11 @@
     </el-row>
 
     <!-- 增改表单 -->
-    <el-dialog title="教师信息" :visible.sync="dialogFormVisible">
+    <el-dialog
+      title="教师信息"
+      :visible.sync="dialogFormVisible"
+      :modal="false"
+    >
       <el-form :model="form" ref="teaForm" label-suffix=" : " :rules="rules">
         <el-form-item
           label="教师号"
