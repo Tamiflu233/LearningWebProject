@@ -13,8 +13,10 @@
             v-for="(item, index) in fileList"
             :key="index"
             :fileInfo="item"
-          ></file-item> </el-card
-      ></el-col>
+          ></file-item>
+          <div class="empty-tip" v-if="fileList.length == 0">暂无资料😭~</div>
+        </el-card></el-col
+      >
       <el-col :span="6"
         ><el-card class="upload-card">
           <el-upload
@@ -200,6 +202,15 @@ export default {
 .title {
   font-size: 20px;
   text-align: center;
+}
+.empty-tip {
+  margin-top: 42px;
+  text-align: center;
+  font-size: 18px;
+  color: rgb(43, 147, 213);
+}
+.box-card {
+  min-height: 200px;
 }
 </style>
 

@@ -107,4 +107,5 @@ export default {
   height: calc(100vh - 70px);
   opacity: 0.9 !important;
 }
+
 </style>
