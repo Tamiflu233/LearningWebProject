@@ -5,7 +5,7 @@ spring:
   # 数据库驱动：
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/learn?serverTimezone=UTC
+    url: jdbc:mysql://212.129.249.145:3306/learn?serverTimezone=UTC
     username: root
     password: weng6622
     type: com.alibaba.druid.pool.DruidDataSource
@@ -24,16 +24,15 @@ spring:
     static-locations: classpath:/static/, classpath:/META-INF/resources/, classpath:/resources/, classpath:/public/
   mvc:
     static-path-pattern: /**
-  servlet:
-    multipart:
-      max-file-size: 10MB
-      max-request-size: 100MB
+
 #应用服务 WEB 访问端口
 server:
   port: 8989
   servlet:
     context-path: /
-
+  tomcat:
+    uri-encoding: UTF-8
+    max-http-header-size: 8096
 #mybatis
 mybatis:
   mapper-locations: classpath:com.tamiflu.mapper/*.xml

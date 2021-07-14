@@ -4,7 +4,7 @@ import { showLoading, hideLoading } from 'common/loading';
 export function request(config) {
 
   const instance = axios.create({
-    baseURL: 'http://localhost:8989/api',
+    baseURL: 'http://212.129.249.145/api',
     timeout: 5000,
     headers: {
       'Access-Control-Allow-Headers': 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With, yourHeaderField'

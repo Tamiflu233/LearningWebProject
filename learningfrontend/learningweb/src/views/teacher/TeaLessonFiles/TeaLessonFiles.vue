@@ -22,7 +22,7 @@
           <el-upload
             name="multipartFiles"
             class="upload-demo"
-            action="http://localhost:8989/api/file/upload/"
+            action="http://212.129.249.145/api/file/upload/"
             :file-list="fileList"
             :on-success="uploadSuccess"
             :on-remove="removeFile"
