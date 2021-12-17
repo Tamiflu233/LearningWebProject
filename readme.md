@@ -1,6 +1,6 @@
 ## 教学课后交流答疑系统
 
-- 直接运行springboot即可，前端已打包部署到springboot
+- 直接运行springboot即可，前端已打包部署到springboot(已更新，更新后没将前端打包到后端，故必须也启动vue,且确保前后端端口不一致)
 - 记得修改springboot中application.yml的数据库密码，载入POM的依赖
 - 使用前先运行learn.sql导入数据库
 - 若要运行前端vue代码，记得先npm install安装所有依赖包，然后npm run serve
